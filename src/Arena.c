@@ -25,6 +25,21 @@ Arena* ArenaCreate()
     return arena;
 }
 
+void ArenaInsert(Arena* arena, size_t val)
+{
+    size_t* values = ArenaGetValues(arena);
+    size_t i = 0;
+
+    while(values[i] != 0 )
+    {
+        i++;
+    }
+
+    values[i] = val;
+    arena->size++;
+    arena->position += sizeof(size_t);
+}
+
 size_t* ArenaGetValues(Arena* arena)
 {
     return arena->values;

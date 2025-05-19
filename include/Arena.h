@@ -9,6 +9,8 @@ typedef struct Arena Arena;
 
 Arena* ArenaCreate();
 
+void ArenaInsert(Arena* arena, size_t val);
+
 size_t* ArenaGetValues(Arena* arena);
 
 void ArenaDestroy(Arena* arena);
