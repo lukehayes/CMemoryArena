@@ -1,6 +1,7 @@
 #include "Arena.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct Arena
 {
@@ -48,4 +49,25 @@ size_t* ArenaGetValues(Arena* arena)
 void ArenaDestroy(Arena* arena)
 {
     free(arena);
+}
+
+void ArenaPrint(Arena* arena)
+{
+    printf("Arena size: %lu, position %lu bytes\n", arena->size, arena->position);
+    printf("ap / as : %lu\n", arena->position / arena->size);
+    printf("%lu / %lu \n\n\n", arena->position / arena->size, arena->position / arena->size);
+
+    for(int i = 0 ; i <= (arena->position / arena->size); i++)
+    {
+        size_t c = 0;
+
+        while(c < sizeof(size_t) -3 )
+        {
+            printf("[O]");
+            c++;
+        }
+        printf("........ \n");
+
+    }
+
 }

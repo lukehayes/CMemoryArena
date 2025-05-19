@@ -15,4 +15,6 @@ size_t* ArenaGetValues(Arena* arena);
 
 void ArenaDestroy(Arena* arena);
 
+void ArenaPrint(Arena* arena);
+
 #endif // !LDH_MEM_ARENA_H
