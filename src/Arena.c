@@ -64,17 +64,18 @@ void ArenaPrint(Arena* arena)
     printf("####################################\n");
     printf("Arena size: %lu, position: %lu bytes, capacity: %lu \n", arena->size, arena->position,arena->capacity);
     printf("####################################\n");
+    printf("");
 
-    for(int i = 0 ; i <= arena->capacity; i++)
+    for(int i = 0 ; i <= arena->capacity - 1; i++)
     {
         if (arena->values[i]) {
-            printf("[.]");
+            printf("[1]");
         }else
         {
-            printf("[o]");
+            printf("[0]");
         }
 
-        if(i % (sizeof(size_t)) == 0)
+        if(i > 0 && i % (sizeof(size_t)) == 0)
         {
             printf("\n");
         }
