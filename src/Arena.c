@@ -54,21 +54,24 @@ void ArenaDestroy(Arena* arena)
 
 void ArenaPrint(Arena* arena)
 {
-    printf("Arena size: %lu, position %lu bytes\n", arena->size, arena->position);
+    printf("Arena size: %lu, position %lu bytes, capacity: %lu \n", arena->size, arena->position,arena->capacity);
     printf("ap / as : %lu\n", arena->position / arena->size);
     printf("%lu / %lu \n\n\n", arena->position / arena->size, arena->position / arena->size);
 
-    for(int i = 0 ; i <= (arena->position / arena->size); i++)
+    for(int i = 0 ; i <= arena->capacity; i++)
     {
         size_t c = 0;
 
-        while(c < sizeof(size_t) -3 )
+        while(c <= sizeof(size_t) -1)
         {
-            printf("[O]");
+            if (arena->values[c]) {
+                printf("[.]");
+            }else
+            {
+                printf("[o]");
+            }
             c++;
         }
-        printf("........ \n");
-
+        printf("\n");
     }
-
 }
