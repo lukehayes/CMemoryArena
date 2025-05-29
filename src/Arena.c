@@ -12,7 +12,6 @@ typedef struct Arena
 
 
 } Arena;
-
 Arena* ArenaCreate(size_t bufferSize)
 {
     Arena* arena = malloc(sizeof(Arena));
@@ -62,24 +61,22 @@ void ArenaDestroy(Arena* arena)
 
 void ArenaPrint(Arena* arena)
 {
-    printf("Arena size: %lu, position %lu bytes, capacity: %lu \n", arena->size, arena->position,arena->capacity);
-    printf("ap / as : %lu\n", arena->position / arena->size);
-    printf("%lu / %lu \n\n\n", arena->position / arena->size, arena->position / arena->size);
+    printf("####################################\n");
+    printf("Arena size: %lu, position: %lu bytes, capacity: %lu \n", arena->size, arena->position,arena->capacity);
+    printf("####################################\n");
 
     for(int i = 0 ; i <= arena->capacity; i++)
     {
-        size_t c = 0;
-
-        while(c <= sizeof(size_t) -1)
+        if (arena->values[i]) {
+            printf("[.]");
+        }else
         {
-            if (arena->values[c]) {
-                printf("[.]");
-            }else
-            {
-                printf("[o]");
-            }
-            c++;
+            printf("[o]");
         }
-        printf("\n");
+
+        if(i % (sizeof(size_t)) == 0)
+        {
+            printf("\n");
+        }
     }
 }
