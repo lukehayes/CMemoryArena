@@ -53,6 +53,14 @@ size_t* ArenaGetValues(Arena* arena)
     return arena->values;
 }
 
+void ArenaClear(Arena* arena)
+{
+    for (int i = 0; i<= arena->capacity; i++)
+    {
+        arena->values[i] = 0;
+    }
+}
+
 void ArenaDestroy(Arena* arena)
 {
     free(arena->values);
@@ -66,7 +74,6 @@ void ArenaPrint(Arena* arena)
     printf("####################################\n");
     printf("");
 
-    for(int i = 0 ; i <= arena->capacity - 1; i++)
     {
         if (arena->values[i]) {
             printf("[1]");

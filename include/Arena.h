@@ -13,6 +13,8 @@ void ArenaInsert(Arena* arena, size_t val);
 
 void ArenaInsertAt(Arena* arena, size_t pos, size_t val);
 
+void ArenaClear(Arena* arena);
+
 size_t* ArenaGetValues(Arena* arena);
 
 void ArenaDestroy(Arena* arena);
