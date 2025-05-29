@@ -45,6 +45,8 @@ void ArenaInsertAt(Arena* arena, size_t pos, size_t val)
 {
     size_t* mem = arena->values + pos;
     *mem = val;
+
+    arena->size += 1;
 }
 
 size_t* ArenaGetValues(Arena* arena)
