@@ -5,22 +5,22 @@
 
 typedef struct Arena
 {
-    size_t values[ARENA_MAX_COUNT];
+    size_t* values;
     size_t position;
+    size_t capacity;
     size_t size;
 
 
 } Arena;
 
-Arena* ArenaCreate()
+Arena* ArenaCreate(size_t bufferSize)
 {
     Arena* arena = malloc(sizeof(Arena));
 
-    arena->values[0] = 0;
-    arena->values[1] = 0;
-    arena->values[2] = 0;
+    arena->values = malloc(sizeof(size_t) * bufferSize);
 
     arena->position = 0;
+    arena->capacity = bufferSize;
     arena->size = 0;
 
     return arena;
@@ -48,6 +48,7 @@ size_t* ArenaGetValues(Arena* arena)
 
 void ArenaDestroy(Arena* arena)
 {
+    free(arena->values);
     free(arena);
 }
 

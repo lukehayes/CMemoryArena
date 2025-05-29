@@ -7,7 +7,7 @@
 
 typedef struct Arena Arena;
 
-Arena* ArenaCreate();
+Arena* ArenaCreate(size_t bufferSize);
 
 void ArenaInsert(Arena* arena, size_t val);
 
