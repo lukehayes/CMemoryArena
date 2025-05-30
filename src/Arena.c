@@ -25,7 +25,7 @@ Arena* ArenaCreate(size_t bufferSize)
     return arena;
 }
 
-void ArenaInsert(Arena* arena, size_t val)
+void* ArenaInsert(Arena* arena, size_t val)
 {
     size_t* values = ArenaGetValues(arena);
     size_t i = 0;
@@ -38,14 +38,18 @@ void ArenaInsert(Arena* arena, size_t val)
     values[i] = val;
     arena->size++;
     arena->position += sizeof(size_t);
+
+	return &values[i];
 }
 
-void ArenaInsertAt(Arena* arena, size_t pos, size_t val)
+void* ArenaInsertAt(Arena* arena, size_t pos, size_t val)
 {
     size_t* mem = arena->values + pos;
     *mem = val;
 
     arena->size += 1;
+
+	return mem;
 }
 
 size_t* ArenaGetValues(Arena* arena)
@@ -74,7 +78,7 @@ void ArenaPrint(Arena* arena)
     printf("####################################\n");
     printf("");
 
-    for (int i 0; i <= arena->capacity; i++)
+    for (int i = 0; i <= arena->capacity; i++)
     {
         if (arena->values[i]) {
             printf("[1]");
