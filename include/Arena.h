@@ -20,7 +20,7 @@ Arena* ArenaCreate(size_t bufferSize);
 * @param Arena* arena.
 * @param size_t data.
 */
-void ArenaInsert(Arena* arena, size_t data);
+void* ArenaInsert(Arena* arena, void* val, size_t dataSize);
 
 /**
 * Insert data into the arena at the a specific location.

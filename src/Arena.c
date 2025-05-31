@@ -5,7 +5,7 @@
 
 typedef struct Arena
 {
-    size_t* values;
+    void* values;
     size_t position;
     size_t capacity;
     size_t size;
@@ -16,28 +16,42 @@ Arena* ArenaCreate(size_t bufferSize)
 {
     Arena* arena = malloc(sizeof(Arena));
 
-    arena->values = malloc(sizeof(size_t) * bufferSize);
+    size_t buf = 1 + sizeof(size_t) * bufferSize;
+
+    arena->values = malloc(buf);
 
     arena->position = 0;
     arena->capacity = bufferSize;
     arena->size = 0;
 
+    (size_t*)&arena->values[buf] = '\n';
+
     return arena;
 }
 
-void ArenaInsert(Arena* arena, size_t val)
+void* ArenaInsert(Arena* arena, void* val, size_t dataSize)
 {
-    size_t* values = ArenaGetValues(arena);
-    size_t i = 0;
+    printf("Arena Pos:%lu \n", arena->position);
+    printf("Data Size:%lu \n", dataSize);
 
-    while(values[i] != 0 )
-    {
-        i++;
-    }
+    void* values = arena->values;
 
-    values[i] = val;
-    arena->size++;
-    arena->position += sizeof(size_t);
+    arena->values = val;
+    arena->position += dataSize;
+
+    return arena->values;
+
+    /*size_t* values = ArenaGetValues(arena);*/
+    /*size_t i = 0;*/
+
+    /*while(values[i] != 0 )*/
+    /*{*/
+        /*i++;*/
+    /*}*/
+
+    /*values[i] = val;*/
+    /*arena->size++;*/
+    /*arena->position += sizeof(size_t);*/
 }
 
 void ArenaInsertAt(Arena* arena, size_t pos, size_t val)
@@ -57,7 +71,7 @@ void ArenaClear(Arena* arena)
 {
     for (int i = 0; i<= arena->capacity; i++)
     {
-        arena->values[i] = 0;
+        /*(void*)arena->values[i] = 0;*/
     }
 }
 
@@ -74,18 +88,19 @@ void ArenaPrint(Arena* arena)
     printf("####################################\n");
     printf("");
 
-    for (int i = 0; i <= arena->capacity; i++)
+    for(int i = 0; i < arena->capacity -1; i++)
     {
-        if (arena->values[i]) {
-            printf("[1]");
-        }else
-        {
-            printf("[0]");
-        }
+        /*if (arena->values[i]) {*/
+            /*printf("[1]");*/
+        /*}else*/
+        /*{*/
+            /*printf("[0]");*/
+        /*}*/
 
-        if(i > 0 && i % (sizeof(size_t)) == 0)
-        {
-            printf("\n");
-        }
+        /*if (i % 8 == 0 && i > 0)*/
+        /*{*/
+            /*printf("\n");*/
+        /*}*/
+
     }
 }

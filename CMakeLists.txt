@@ -5,6 +5,7 @@ project(MemArena)
 # Variables
 #
 set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_FLAGS -ggdb)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(INCLUDE_DIRS "include")
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
