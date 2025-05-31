@@ -74,7 +74,7 @@ void ArenaPrint(Arena* arena)
     printf("####################################\n");
     printf("");
 
-    for (int i 0; i <= arena->capacity; i++)
+    for (int i = 0; i <= arena->capacity; i++)
     {
         if (arena->values[i]) {
             printf("[1]");
