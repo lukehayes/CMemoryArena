@@ -18,9 +18,12 @@ Arena* ArenaCreate(size_t bufferSize);
 * Insert data into the arena at the next available slot.
 *
 * @param Arena* arena.
-* @param size_t data.
+* @param void* data.
+* @param size_t size. The sizeof() data to be inserted.
+*
+* @return void*. A pointer to the inserted data.
 */
-void ArenaInsert(Arena* arena, size_t data);
+void* ArenaInsert(Arena* arena, const void* data, size_t size );
 
 /**
 * Insert data into the arena at the a specific location.
